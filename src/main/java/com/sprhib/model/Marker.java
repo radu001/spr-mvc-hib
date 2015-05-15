@@ -1,19 +1,8 @@
 package com.sprhib.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "marker")
-public class Marker implements Comparable<Marker> {
+public class Marker extends BaseEntity implements Comparable<Marker> {
 
-
-	@Id
-	@GeneratedValue
-	private int id;
-	private String name;
 	private String description;
 	private String iconUrl;
 	private double latitude;
@@ -123,22 +112,6 @@ public class Marker implements Comparable<Marker> {
 
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
-	}
-	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 }
