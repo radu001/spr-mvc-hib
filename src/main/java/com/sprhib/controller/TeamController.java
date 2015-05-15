@@ -12,15 +12,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sprhib.dao.AdminDaoImpl;
 import com.sprhib.model.Team;
+import com.sprhib.service.AdminServiceImpl;
 import com.sprhib.service.TeamService;
 
 @Controller
 @RequestMapping(value="/team")
 public class TeamController {
 	
+	
 	@Autowired
 	private TeamService teamService;
+	
+
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public ModelAndView addTeamPage() {
@@ -49,6 +54,10 @@ public class TeamController {
 	@RequestMapping(value="/list")
 	public ModelAndView listOfTeams() {
 		ModelAndView modelAndView = new ModelAndView("list-of-teams");
+		
+		
+		//System.out.println(adminService.getAdmin().getEmail());
+		
 		
 		List<Team> teams = teamService.getTeams();
 		modelAndView.addObject("teams", teams);
