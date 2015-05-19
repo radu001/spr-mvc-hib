@@ -9,12 +9,12 @@ public class LinkController {
 	
 	@RequestMapping(value="/")
 	public ModelAndView mainPage() {
-
-		return new ModelAndView("home");
+		return new ModelAndView("index");
 	}
 	
-	@RequestMapping(value="/index")
-	public ModelAndView indexPage() {
-		return new ModelAndView("home");
+	@RequestMapping(value="/signin")
+	public ModelAndView signinPage() {
+		return new ModelAndView("signin");
 	}
+	
 }

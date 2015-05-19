@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sprhib.model.Team;
 import com.sprhib.service.TeamService;
 
-
 @Controller
 @RequestMapping(value="/team")
 public class TeamController {

@@ -1,50 +1,45 @@
 package com.sprhib.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class MarkersCategory extends BaseEntity {
+@Entity
+@Table(name="category")
+public class MarkersCategory {
 
+	@Id
+	@GeneratedValue
+	private int idCategory;
+	private String name;
 	private String description;
-	private List<Marker> markers;
-	private boolean publicMap;
-
-	public MarkersCategory(int id, String title, String description,
-			boolean publicMap) {
-		setName(title);
-		setId(id);
-		this.description = description;
-		this.publicMap = publicMap;
-
-		markers = new ArrayList<Marker>();
+	private int publicMap;
+	
+	protected MarkersCategory() {
 	}
-
-	public boolean addMarker(Marker marker) {
-		return markers.add(marker);
+	
+	public String getName() {
+		return name;
 	}
-
-	public boolean removeMarker(Marker marker) {
-		return markers.remove(marker);
+	public void setName(String name) {
+		this.name = name;
 	}
-
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public List<Marker> getMarkers() {
-		return markers;
-	}
-
-	public boolean isPublicMap() {
+	public int isPublicMap() {
 		return publicMap;
 	}
-
-	public void setPublicMap(boolean publicMap) {
+	public void setPublicMap(int publicMap) {
 		this.publicMap = publicMap;
 	}
+	public int getIdCategory() {
+		return idCategory;
+	}
+	
 
 }

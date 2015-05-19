@@ -1,24 +1,35 @@
 package com.sprhib.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class Marker extends BaseEntity implements Comparable<Marker> {
+@Entity
+@Table(name = "marker")
+public class Marker implements Comparable<Marker> {
 
+	@Id
+	@GeneratedValue
+	private int idMarker;
+	private String name;
 	private String description;
 	private String iconUrl;
 	private double latitude;
 	private double longitude;
 	private String site;
 	private int fk_category;
-	private String routeStr;
+	private String route;
 	private String imageUrl;
 	private String address;
 
-
+	protected Marker() {
+	}
 
 
 	public Marker(int idMarker, String title, String description, String address, String imageUrl,
 			String iconUrl, String site, double latitude, double longitude, String routeStr, int fk_category) {
-		setId(idMarker);
+		setIdMarker(idMarker);
 		setName(title);
 		this.description = description;
 		this.imageUrl = imageUrl;
@@ -26,7 +37,7 @@ public class Marker extends BaseEntity implements Comparable<Marker> {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.site = site;
-		this.routeStr = routeStr;
+		this.route = routeStr;
 		this.fk_category = fk_category;
 		this.address = address;
 	}
@@ -58,12 +69,12 @@ public class Marker extends BaseEntity implements Comparable<Marker> {
 		this.imageUrl = imageUrl;
 	}
 
-	public String getRouteStr() {
-		return routeStr;
+	public String getRoute() {
+		return route;
 	}
 
-	public void setRouteStr(String routeStr) {
-		this.routeStr = routeStr;
+	public void setRoute(String route) {
+		this.route = route;
 	}
 
 	public int getFk_category() {
@@ -112,6 +123,22 @@ public class Marker extends BaseEntity implements Comparable<Marker> {
 
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
+	}
+	
+	public int getIdMarker() {
+		return idMarker;
+	}
+
+	public void setIdMarker(int id) {
+		this.idMarker = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }
