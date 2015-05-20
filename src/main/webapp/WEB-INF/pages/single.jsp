@@ -1,4 +1,5 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -123,24 +124,22 @@
 				<div class="clearfix"></div>
 				<div class="filterForm" style="display: none">
 					<div class="row">
+					
 						<h1>Update Category</h1>
 					</div>
-					<form role="form" action="update" method="post"
-						onsubmit="return validateCategoryForm()" name="categoryForm">
-						<input type="hidden" name="requestType" value="updateCategory" />
-						<input type="hidden" value="${category.idCategory}"
-							name="categoryId" />
+					<form:form method="POST" commandName="category" action="${pageContext.request.contextPath}/single/updateCategory.html" onsubmit="return validateCategoryForm()" name="categoryForm">
+						<form:hidden value="${category.idCategory}" path="idCategory" />
+							
 						<div class="row">
 							<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
 								<div class="form-group">
-									<label>Title</label> <input type="text" class="form-control"
-										name="title" value="${category.name}">
+									<label>Title</label> <form:input type="text" class="form-control" id="titleCategory" value="${category.name}" path="name" />
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<label>Description</label>
-							<textarea class="form-control" rows="4" name="description">${category.description}</textarea>
+							<form:textarea class="form-control" rows="4" name="description" value="${category.description}" path="description" />
 						</div>
 
 						<div class="row">
@@ -154,23 +153,22 @@
 
 
 						</div>
-					</form>
+					</form:form>
 
 					<BR> <BR>
 					<div class="row">
 						<h1>Update Marker</h1>
 					</div>
-					<form role="form" action="update" method="post"
-						onsubmit="return validateMarkerForm()" name="markerForm">
-						<input type="hidden" name="requestType" value="updateMarker" /> <input
-							type="hidden" value="${marker.idMarker}" name="markerId" />
+					<form:form method="POST" commandName="marker" action="${pageContext.request.contextPath}/single/updateMarker.html" onsubmit="return validateMarkerForm()" name="markerForm">
+
+						<form:hidden value="${marker.idMarker}" path="idMarker" />
 
 						<div class="row">
 
 							<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
 								<div class="form-group">
-									<label>Title</label> <input type="text" class="form-control"
-										value="${marker.name}" name="title">
+									<label>Title</label> <form:input type="text" class="form-control"
+										value="${marker.name}" name="title" path="name" />
 								</div>
 							</div>
 
@@ -189,15 +187,15 @@
 										<c:forEach var="cat" items="${categories}">
 										
 										<c:if test="${cat.idCategory != cat.idCategory}">
-										<li><input type="radio" name="ptype"
-										value="${cat.idCategory}"><a href="#"
-										onclick="changeMap('${cat.idCategory}');">${cat.name}</a></li>
+										<li> 
+										<form:radiobutton name="ptype" value="${cat.idCategory}" path="fk_category" />
+										<a href="#" onclick="changeMap('${cat.idCategory}');">${cat.name}</a></li>
 										</c:if>
 										
 										<c:if test="${cat.idCategory == cat.idCategory}">
-										<li class="active"><input type="radio" name="ptype"
-										checked="checked" value="${cat.idCategory}"><a href="#"
-										onclick="changeMap('${cat.idCategory}');">${cat.name}</a></li>
+										<li class="active">
+										<form:radiobutton name="ptype" checked="checked" value="${cat.idCategory}" path="fk_category" />
+										<a href="#" onclick="changeMap('${cat.idCategory}');">${cat.name}</a></li>
 										</c:if>
 										
 										</c:forEach>
@@ -209,23 +207,23 @@
 
 						<div class="form-group">
 							<label>Description</label>
-							<textarea class="form-control" rows="4" name="description">${marker.description}</textarea>
+							<form:textarea class="form-control" rows="4" name="description" value="${marker.description}" path="description" />
 						</div>
 
 
 						<div class="row">
 							<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 								<div class="form-group">
-									<label>Latitude</label> <input type="text" class="form-control"
+									<label>Latitude</label> <form:input type="text" class="form-control"
 										name="latitude" id="latitude"
-										value="${marker.latitude}">
+										value="${marker.latitude}" path="latitude" />
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 								<div class="form-group">
-									<label>Longitude</label> <input type="text"
+									<label>Longitude</label> <form:input type="text"
 										class="form-control" name="longitude" id="longitude"
-										value="${marker.longitude}">
+										value="${marker.longitude}" path="longitude" />
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
@@ -240,8 +238,8 @@
 								<div class="form-group">
 									<label>Web Site</label>
 									<div class="input-group">
-										<input class="form-control" type="text" name="webSite"
-											value="${marker.site}">
+										<form:input class="form-control" type="text" name="webSite"
+											value="${marker.site}" path="site" />
 									</div>
 								</div>
 							</div>
@@ -253,8 +251,8 @@
 								style="width: 50%;">
 								<div class="input-group">
 									<label>Route</label>
-									<textarea class="form-control" rows="1" id="routeString"
-										name="route">${marker.route}</textarea>
+									<form:textarea class="form-control" rows="1" id="routeString"
+										name="route" value="${marker.route}" path="route" />
 								</div>
 							</div>
 
@@ -279,17 +277,17 @@
 						</div>
 
 						<div class="form-group">
-							<label>Address</label> <input type="text" class="form-control"
-								name="address" id="address" value="${marker.address}">
+							<label>Address</label> <form:input type="text" class="form-control"
+								name="address" id="address" value="${marker.address}" path="address" />
 						</div>
 
 						<div class="form-group">
-							<label>Image Url</label> <input type="text" class="form-control"
-								name="imageUrl" value="${marker.imageUrl}">
+							<label>Image Url</label> <form:input type="text" class="form-control"
+								name="imageUrl" value="${marker.imageUrl}" path="imageUrl"/>
 						</div>
 						<div class="form-group">
-							<label>Icon Url</label> <input type="text" class="form-control"
-								name="iconUrl" value="${marker.iconUrl}">
+							<label>Icon Url</label> <form:input type="text" class="form-control"
+								name="iconUrl" value="${marker.iconUrl}" path="iconUrl" />
 						</div>
 
 
@@ -309,7 +307,7 @@
 							</div>
 						</div>
 
-					</form>
+					</form:form>
 
 				</div>
 			</div>

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,6 +51,32 @@ public class SingleController {
 		int idInt = Integer.parseInt(id);
 		
 		return markerService.getByPK(idInt);
+	}
+	
+	@RequestMapping(value="/single/updateCategory", method=RequestMethod.POST)
+	public ModelAndView updateCategory(@ModelAttribute MarkersCategory category) {
+		
+		System.out.println(category.getIdCategory() + category.getName() + category.getDescription());
+		ModelAndView modelAndView = new ModelAndView("home");
+		categoryService.update(category);
+		
+		String message = "Team was successfully added.";
+		modelAndView.addObject("message", message);
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/single/updateMarker", method=RequestMethod.POST)
+	public ModelAndView updateMarker(@ModelAttribute Marker marker) {
+		
+		System.out.println(marker.getIdMarker());
+		ModelAndView modelAndView = new ModelAndView("home");
+		markerService.update(marker);
+		
+		String message = "Team was successfully added.";
+		modelAndView.addObject("message", message);
+		
+		return modelAndView;
 	}
 	
 	

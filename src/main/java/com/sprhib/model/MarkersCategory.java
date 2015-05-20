@@ -14,7 +14,7 @@ public class MarkersCategory {
 	private int idCategory;
 	private String name;
 	private String description;
-	private int publicMap;
+	//private int publicMap;
 	
 	protected MarkersCategory() {
 	}
@@ -31,15 +31,21 @@ public class MarkersCategory {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int isPublicMap() {
-		return publicMap;
-	}
-	public void setPublicMap(int publicMap) {
-		this.publicMap = publicMap;
-	}
+//	public int isPublicMap() {
+//		return publicMap;
+//	}
+//	public void setPublicMap(int publicMap) {
+//		this.publicMap = publicMap;
+//	}
+
 	public int getIdCategory() {
 		return idCategory;
 	}
+
+	public void setIdCategory(int idCategory) {
+		this.idCategory = idCategory;
+	}
+
 	
 
 }
