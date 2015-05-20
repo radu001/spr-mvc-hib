@@ -23,7 +23,7 @@
     
     function validateCategoryForm() {
     	var str = "";
-        var title = document.forms["categoryForm"]["title"].value;
+        var title = document.getElementById('titleCategory').value;
         var description = document.forms["categoryForm"]["description"].value;
         console.log(title);
         console.log(description);

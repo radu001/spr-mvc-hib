@@ -99,7 +99,7 @@ function changeMap(element) {
 							'<span class="icon-eye"></span>' +
 						'</div>' +
 					'</div>' +
-					'<h2>marker1</h2>' +
+					'<h2>' + marker.name + '</h2>' +
 					'<div class="cardAddress">' +
 						'<span class="icon-pointer"></span>' + marker.address +
 					'</div>' +

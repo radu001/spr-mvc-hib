@@ -16,7 +16,7 @@ public class MarkersCategory {
 	private String description;
 	//private int publicMap;
 	
-	protected MarkersCategory() {
+	public MarkersCategory() {
 	}
 	
 	public String getName() {

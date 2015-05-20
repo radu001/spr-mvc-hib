@@ -23,7 +23,7 @@ public class Marker implements Comparable<Marker> {
 	private String imageUrl;
 	private String address;
 
-	protected Marker() {
+	public Marker() {
 	}
 
 
@@ -129,9 +129,11 @@ public class Marker implements Comparable<Marker> {
 		return idMarker;
 	}
 
-	public void setIdMarker(int id) {
-		this.idMarker = id;
+
+	public void setIdMarker(int idMarker) {
+		this.idMarker = idMarker;
 	}
+
 
 	public String getName() {
 		return name;
@@ -141,4 +143,5 @@ public class Marker implements Comparable<Marker> {
 		this.name = name;
 	}
 
+	
 }

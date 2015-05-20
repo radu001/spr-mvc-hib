@@ -96,7 +96,7 @@ if(session.getAttribute("loggedIn") != null)
 						<li><a href="signin.jsp">Sign In</a></li>
 						<li><a href="index.jsp">Homepage</a></li>
 						<li><a href="explore.jsp">Explore</a></li>
-						<li><a href="add.jsp">Add</a></li>
+						<li><a href="${pageContext.request.contextPath}/add.html">Add</a></li>
 					</ul></li>
 			</ul>
 		</nav>
