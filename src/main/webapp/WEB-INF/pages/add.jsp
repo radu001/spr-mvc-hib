@@ -189,11 +189,13 @@ if(session.getAttribute("loggedIn") != null)
 										<c:if test="${cat.idCategory != cat.idCategory}">
 										<li> 
 										<form:radiobutton name="ptype" value="${cat.idCategory}" path="fk_category" />
+										<a href="#">${cat.name}</a></li>
 										</c:if>
 										
 										<c:if test="${cat.idCategory == cat.idCategory}">
 										<li class="active">
 										<form:radiobutton name="ptype" checked="checked" value="${cat.idCategory}" path="fk_category" />
+										<a href="#">${cat.name}</a></li>
 										</c:if>
 										
 										</c:forEach>
@@ -229,6 +231,7 @@ if(session.getAttribute("loggedIn") != null)
 									<label>Put Marker</label> <input type="button"
 										value="Put marker" class="btn btn-green btn-lg"
 										style="height: 37px;" id="putMarkerBtn"
+										onclick="putMarker()">
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
