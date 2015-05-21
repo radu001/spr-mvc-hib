@@ -38,26 +38,18 @@ public class AddController {
 	@RequestMapping(value="/add/addCategory", method=RequestMethod.POST)
 	public ModelAndView addCategory(@ModelAttribute MarkersCategory category) {
 		
-		System.out.println(category.getIdCategory() + category.getName() + category.getDescription());
-		ModelAndView modelAndView = new ModelAndView("home");
+		ModelAndView modelAndView = new ModelAndView("redirect:/explore/explorePage.html");
 		categoryService.insert(category);
-		
-		String message = "Team was successfully added.";
-		modelAndView.addObject("message", message);
 		
 		return modelAndView;
 	}
 	
 	@RequestMapping(value="/add/addMarker", method=RequestMethod.POST)
 	public ModelAndView addCategory(@ModelAttribute Marker marker) {
-		
-		System.out.println(marker.getIdMarker());
-		ModelAndView modelAndView = new ModelAndView("home");
+
+		ModelAndView modelAndView = new ModelAndView("redirect:/explore/explorePage.html");
 		markerService.insert(marker);
-		
-		String message = "Team was successfully added.";
-		modelAndView.addObject("message", message);
-		
+	
 		return modelAndView;
 	}
 	
