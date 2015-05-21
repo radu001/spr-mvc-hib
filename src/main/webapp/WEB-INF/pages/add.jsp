@@ -35,7 +35,7 @@ response.sendRedirect("signin.html");
 
 	<div id="header">
 		<div class="logo">
-			<a href="index.jsp"> <span class="fa fa-home marker"></span> <span
+			<a href="${pageContext.request.contextPath}/"> <span class="fa fa-home marker"></span> <span
 				class="logoText">reales</span>
 			</a>
 		</div>
@@ -70,7 +70,7 @@ if(session.getAttribute("loggedIn") != null)
 				<ul>
 					<li><a href="#"><span class="icon-settings"></span>Settings</a></li>
 					<li class="divider"></li>
-					<li><a href="#"><span class="icon-power"></span>Logout</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/logout"><span class="icon-power"></span>Logout</a></li>
 				</ul>
 			</div>
 		</div>
@@ -91,20 +91,18 @@ if(session.getAttribute("loggedIn") != null)
 				<div class="clearfix"></div>
 			</div>
 			<ul>
-				<li><a href="explore.jsp"><span
+				<li><a href="${pageContext.request.contextPath}/explore/explorePage"><span
 						class="navIcon icon-compass"></span><span class="navLabel">Explore</span></a></li>
-				<li><a href="add.jsp"><span class="navIcon icon-plus"></span><span
+				<li><a href="${pageContext.request.contextPath}/add"><span class="navIcon icon-plus"></span><span
 						class="navLabel">New</span></a></li>
-
-
 				<li class="hasSub"><a href="#"><span
 						class="navIcon icon-link"></span><span class="navLabel">Pages</span><span
 						class="fa fa-angle-left arrowRight"></span></a>
 					<ul>
-						<li><a href="signin.jsp">Sign In</a></li>
-						<li><a href="index.jsp">Homepage</a></li>
-						<li><a href="explore.jsp">Explore</a></li>
-						<li><a href="add.jsp">Add</a></li>
+						<li><a href="${pageContext.request.contextPath}/signin">Sign In</a></li>
+						<li><a href="${pageContext.request.contextPath}/">Homepage</a></li>
+						<li><a href="${pageContext.request.contextPath}/explore/explorePage">Explore</a></li>
+						<li><a href="${pageContext.request.contextPath}/add">Add</a></li>
 					</ul></li>
 			</ul>
 		</nav>
