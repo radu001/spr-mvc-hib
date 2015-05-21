@@ -151,7 +151,10 @@ if(session.getAttribute("loggedIn") != null)
 						</div>
 						
 					</div>
-				
+					<div class="row">
+					<label>Description:</label>
+					<p id="catDescription">All categories</p>
+					</div>
 				</form>
 			</div>
 			<div class="resultsList" id="resultList">

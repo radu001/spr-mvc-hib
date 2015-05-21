@@ -114,13 +114,31 @@ function changeMap(element) {
 		    div.innerHTML = string;
 		    document.getElementById('resultList').innerHTML = "";
 		    document.getElementById('resultList').appendChild(div);
+		    
+		    
 
 		},
 		error : function() {
 			console.log('failed');
 		}
 	});
-
+	
+if(element == -1) {
+	document.getElementById("catDescription").innerHTML = "All categories";
+	return;
+}
+	var a = $.ajax({
+		url : ctx + '/single/catJson/' + element,
+		type : "POST",
+		dataType : 'json',
+		success : function(data) {
+			console.log(data)
+			document.getElementById("catDescription").innerHTML = data.description;
+		},
+		error : function() {
+			console.log('failed');
+		}
+	});
 }
 
 // custom infowindow object
