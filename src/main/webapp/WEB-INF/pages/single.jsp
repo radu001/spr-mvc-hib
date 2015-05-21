@@ -127,9 +127,42 @@
 					
 						<h1>Update Category</h1>
 					</div>
+					
 					<form:form method="POST" commandName="category" action="${pageContext.request.contextPath}/single/updateCategory.html" onsubmit="return validateCategoryForm()" name="categoryForm">
-						<form:hidden value="${category.idCategory}" path="idCategory" />
+
+						<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+								<div class="btn-group">
+									<label>Category</label>
+									<div class="clearfix"></div>
+									<a href="#" data-toggle="dropdown"
+										class="btn btn-default dropdown-toggle"> <span
+										class="dropdown-label">${category.name}</span>&nbsp;&nbsp;&nbsp;<span
+										class="caret"></span>
+									</a>
+									<ul class="dropdown-menu dropdown-select">
 							
+										
+										<c:forEach var="cat" items="${categories}">
+										
+										<c:if test="${cat.idCategory != cat.idCategory}">
+										<li> 
+										<form:radiobutton name="ptype" value="${cat.idCategory}" path="idCategory" />
+										<a href="#" onclick="changeCategory('${cat.idCategory}');">${cat.name}</a></li>
+										</c:if>
+										
+										<c:if test="${cat.idCategory == cat.idCategory}">
+										<li class="active">
+										<form:radiobutton name="ptype" checked="checked" value="${cat.idCategory}" path="idCategory" />
+										<a href="#" onclick="changeCategory('${cat.idCategory}');">${cat.name}</a></li>
+										</c:if>
+										
+										</c:forEach>
+
+									</ul>
+								</div>
+							</div>
+							</div>
 						<div class="row">
 							<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
 								<div class="form-group">
@@ -139,18 +172,25 @@
 						</div>
 						<div class="form-group">
 							<label>Description</label>
-							<form:textarea class="form-control" rows="4" name="description" value="${category.description}" path="description" />
+							<form:textarea class="form-control" rows="4" name="description" id="descriptionCategory" value="${category.description}" path="description" />
 						</div>
 
 						<div class="row">
 
 							<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 								<div class="form-group">
-									<input type="submit" class="btn btn-green btn-lg"
+									<input type="submit" class="btn btn-green btn-lg" name="submitAction" value="update"
 										value="Update Category">
 								</div>
 							</div>
 
+							<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+								<div class="form-group">
+									<input type="submit" class="btn btn-green btn-lg" name="submitAction" value="delete"
+										value="Delete Category">
+								</div>
+							</div>
+							
 
 						</div>
 					</form:form>
@@ -189,13 +229,13 @@
 										<c:if test="${cat.idCategory != cat.idCategory}">
 										<li> 
 										<form:radiobutton name="ptype" value="${cat.idCategory}" path="fk_category" />
-										<a href="#" onclick="changeMap('${cat.idCategory}');">${cat.name}</a></li>
+										<a href="#">${cat.name}</a></li>
 										</c:if>
 										
 										<c:if test="${cat.idCategory == cat.idCategory}">
 										<li class="active">
 										<form:radiobutton name="ptype" checked="checked" value="${cat.idCategory}" path="fk_category" />
-										<a href="#" onclick="changeMap('${cat.idCategory}');">${cat.name}</a></li>
+										<a href="#">${cat.name}</a></li>
 										</c:if>
 										
 										</c:forEach>
@@ -294,19 +334,21 @@
 						<div class="row">
 							<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 								<div class="form-group">
-									<input type="submit" class="btn btn-green btn-lg"
+									<input type="submit" class="btn btn-green btn-lg" name="submitAction" value="update"
 										value=" Update Marker ">
 								</div>
 							</div>
-
+							
+							<div class="row">
 							<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-								<div class="input-group">
-									<a class="btn btn-green btn-lg" href="delete?id=${marker.idMarker}&type=marker" 
-									onclick="return validateDelete();">Delete marker</a>
+								<div class="form-group">
+									<input type="submit" class="btn btn-green btn-lg" name="submitAction" value="delete"
+										value=" Delete Marker ">
 								</div>
 							</div>
-						</div>
 
+						</div>
+</div>
 					</form:form>
 
 				</div>

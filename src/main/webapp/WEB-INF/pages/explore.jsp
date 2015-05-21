@@ -142,28 +142,16 @@ if(session.getAttribute("loggedIn") != null)
 							</div>
 						</div>
 						
-							<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+						<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 							<div class="input-group">
 								<label>Close route</label> <input type="button"
 									value="Close route" class="btn btn-green btn-lg"
 									style="height: 37px;" id="putMarkerBtn" onclick="clearRoute()">
 							</div>
 						</div>
-								<% 
-if(session.getAttribute("loggedIn") != null)
-            {
-            %>
-						<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-								<div class="input-group">
-								<label>Delete category</label> 
-									<button class="btn btn-green btn-lg"
-									onclick="return validateDelete();">Delete category</button>
-								</div>
-						</div>
-						<%} %>
 						
 					</div>
-					
+				
 				</form>
 			</div>
 			<div class="resultsList" id="resultList">

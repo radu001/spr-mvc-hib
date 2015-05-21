@@ -66,14 +66,6 @@ function changeMap(element) {
 	//categoryId = element;
 	console.log(element);
 	clearRoute();
-	var jsonReq = {
-		data : []
-	};
-
-	jsonReq.data.push({
-		"request" : 'getMarkers',
-		"categoryId" : element
-	});
 
 	var a = $.ajax({
 		url : ctx + '/explore/listJson/'+element,

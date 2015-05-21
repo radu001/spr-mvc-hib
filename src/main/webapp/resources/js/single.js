@@ -7,6 +7,21 @@ var newMarker = null;
 var markers = [];
 var markerRoute = null;
 
+function changeCategory(idCat) {
+	var a = $.ajax({
+		url : ctx + '/single/catJson/' + idCat,
+		type : "POST",
+		dataType : 'json',
+		success : function(data) {
+			console.log(data)
+			document.getElementById("titleCategory").value = data.name;
+			document.getElementById("descriptionCategory").value = data.description;
+		},
+		error : function() {
+			console.log('failed');
+		}
+	});
+}
 function validateDelete() {
 	if (confirm('Are you sure you want to delete the marker from database?')) {
 	    return true;

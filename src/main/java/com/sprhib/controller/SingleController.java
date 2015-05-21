@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -53,29 +54,35 @@ public class SingleController {
 		return markerService.getByPK(idInt);
 	}
 	
+	@RequestMapping(value="/single/catJson/{id}")
+	public  @ResponseBody  MarkersCategory catJson(@PathVariable String id) {
+		
+		int idInt = Integer.parseInt(id);
+		
+		return categoryService.getByPK(idInt);
+	}
+	
 	@RequestMapping(value="/single/updateCategory", method=RequestMethod.POST)
-	public ModelAndView updateCategory(@ModelAttribute MarkersCategory category) {
+	public ModelAndView updateCategory(@ModelAttribute MarkersCategory category, @RequestParam String submitAction) {
+		ModelAndView modelAndView = new ModelAndView("redirect:/explore/explorePage.html");
 		
-		System.out.println(category.getIdCategory() + category.getName() + category.getDescription());
-		ModelAndView modelAndView = new ModelAndView("home");
-		categoryService.update(category);
-		
-		String message = "Team was successfully added.";
-		modelAndView.addObject("message", message);
-		
+		if(submitAction.equals("update"))
+			categoryService.update(category);
+		else if(submitAction.equals("delete")) 
+			categoryService.delete(category);
+
 		return modelAndView;
 	}
 	
 	@RequestMapping(value="/single/updateMarker", method=RequestMethod.POST)
-	public ModelAndView updateMarker(@ModelAttribute Marker marker) {
+	public ModelAndView updateMarker(@ModelAttribute Marker marker, @RequestParam String submitAction) {
 		
-		System.out.println(marker.getIdMarker());
-		ModelAndView modelAndView = new ModelAndView("home");
+		ModelAndView modelAndView = new ModelAndView("redirect:/explore/explorePage.html");
+		if(submitAction.equals("update")) 
 		markerService.update(marker);
-		
-		String message = "Team was successfully added.";
-		modelAndView.addObject("message", message);
-		
+		else if(submitAction.equals("delete")) 
+			markerService.delete(marker);
+
 		return modelAndView;
 	}
 	
