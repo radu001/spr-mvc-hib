@@ -141,7 +141,14 @@ if(session.getAttribute("loggedIn") != null)
 							<form:textarea class="form-control" rows="4" name="description" path="description" />
 						</div>
 
-						<div class="row">
+	
+						
+						<div class="form-group">
+							<label>Icon Url</label> <form:input type="text" class="form-control"
+								name="iconUrl" path="iconUrl" />
+						</div>
+						
+											<div class="row">
 
 							<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 								<div class="form-group">
@@ -283,10 +290,7 @@ if(session.getAttribute("loggedIn") != null)
 							<label>Image Url</label> <form:input type="text" class="form-control"
 								name="imageUrl" path="imageUrl"/>
 						</div>
-						<div class="form-group">
-							<label>Icon Url</label> <form:input type="text" class="form-control"
-								name="iconUrl" path="iconUrl" />
-						</div>
+
 
 
 						<div class="row">

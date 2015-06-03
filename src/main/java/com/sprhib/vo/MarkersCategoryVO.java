@@ -8,13 +8,27 @@ public class MarkersCategoryVO {
 	private int idCategory;
 	private String name;
 	private String description;
+	private String iconUrl;
+
 
 	public MarkersCategoryVO(MarkersCategory cat) {
 		
 		idCategory = cat.getIdCategory();
 		name = cat.getName();
 		description = cat.getDescription();
+		iconUrl = cat.getIconUrl();
 	}
+
+	
+	public String getIconUrl() {
+		return iconUrl;
+	}
+
+
+	public void setIconUrl(String iconUrl) {
+		this.iconUrl = iconUrl;
+	}
+
 
 	public int getIdCategory() {
 		return idCategory;

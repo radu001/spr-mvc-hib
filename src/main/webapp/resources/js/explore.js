@@ -174,7 +174,7 @@ function putMarkers(markersArray) {
 							route : marker.route,
 							map : map,
 							icon : new google.maps.MarkerImage(
-									ctx + '/images/marker-green.png', null, null,
+									ctx + "/" + marker.iconUrl, null, null,
 									null, new google.maps.Size(36, 36)),
 							draggable : false,
 							animation : google.maps.Animation.DROP,

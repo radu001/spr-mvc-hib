@@ -16,6 +16,8 @@ function changeCategory(idCat) {
 			console.log(data)
 			document.getElementById("titleCategory").value = data.name;
 			document.getElementById("descriptionCategory").value = data.description;
+			document.getElementById("iconUrl").value = data.iconUrl;
+			
 		},
 		error : function() {
 			console.log('failed');
@@ -96,7 +98,7 @@ function placeMarker(location) {
 	        position: location,
 	        map: map,
 	        icon: new google.maps.MarkerImage( 
-	            ctx + '/images/marker-new.png',
+	        	ctx + "/images/marker-new.png",
 	            null,
 	            null,
 	            null,
@@ -280,7 +282,7 @@ function putMarker(marker) {
 							route : marker.route,
 							map : map,
 							icon : new google.maps.MarkerImage(
-									ctx + '/images/marker-green.png', null, null,
+									ctx + "/" + marker.iconUrl, null, null,
 									null, new google.maps.Size(36, 36)),
 							draggable : false,
 							animation : google.maps.Animation.DROP,

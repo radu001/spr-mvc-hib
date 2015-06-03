@@ -20,7 +20,6 @@ public class Marker implements Comparable<Marker> {
 	private int idMarker;
 	private String name;
 	private String description;
-	private String iconUrl;
 	private double latitude;
 	private double longitude;
 	private String site;
@@ -59,12 +58,11 @@ public class Marker implements Comparable<Marker> {
 	}
 
 	public Marker(int idMarker, String title, String description, String address, String imageUrl,
-			String iconUrl, String site, double latitude, double longitude, String routeStr, int fk_category) {
+			String site, double latitude, double longitude, String routeStr, int fk_category) {
 		setIdMarker(idMarker);
 		setName(title);
 		this.description = description;
 		this.imageUrl = imageUrl;
-		this.iconUrl = iconUrl;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.site = site;
@@ -133,13 +131,6 @@ public class Marker implements Comparable<Marker> {
 		this.description = description;
 	}
 
-	public String getIconUrl() {
-		return iconUrl;
-	}
-
-	public void setIconUrl(String iconUrs) {
-		this.iconUrl = iconUrs;
-	}
 
 	public String getSite() {
 		return site;

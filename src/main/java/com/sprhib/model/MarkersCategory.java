@@ -18,6 +18,7 @@ public class MarkersCategory {
 	private int idCategory;
 	private String name;
 	private String description;
+	private String iconUrl;
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
 	private List<Marker> markers;
 	//private int publicMap;
@@ -32,6 +33,15 @@ public class MarkersCategory {
 
 	public MarkersCategory() {
 	}
+	
+	public String getIconUrl() {
+		return iconUrl;
+	}
+
+	public void setIconUrl(String iconUrl) {
+		this.iconUrl = iconUrl;
+	}
+
 	
 	public String getName() {
 		return name;

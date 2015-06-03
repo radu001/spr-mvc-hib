@@ -145,13 +145,13 @@
 										
 										<c:forEach var="cat" items="${categories}">
 										
-										<c:if test="${cat.idCategory != cat.idCategory}">
+										<c:if test="${cat.idCategory != category.idCategory}">
 										<li> 
 										<form:radiobutton name="ptype" value="${cat.idCategory}" path="idCategory" />
 										<a href="#" onclick="changeCategory('${cat.idCategory}');">${cat.name}</a></li>
 										</c:if>
 										
-										<c:if test="${cat.idCategory == cat.idCategory}">
+										<c:if test="${cat.idCategory == category.idCategory}">
 										<li class="active">
 										<form:radiobutton name="ptype" checked="checked" value="${cat.idCategory}" path="idCategory" />
 										<a href="#" onclick="changeCategory('${cat.idCategory}');">${cat.name}</a></li>
@@ -174,6 +174,10 @@
 							<label>Description</label>
 							<form:textarea class="form-control" rows="4" name="description" id="descriptionCategory" value="${category.description}" path="description" />
 						</div>
+																								<div class="form-group">
+							<label>Icon Url</label> <form:input type="text" class="form-control"
+								name="iconUrl" value="${category.iconUrl}" path="iconUrl" id="iconUrl" />
+						</div>
 
 						<div class="row">
 
@@ -183,6 +187,8 @@
 										value="Update Category">
 								</div>
 							</div>
+							
+
 
 							<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 								<div class="form-group">
@@ -193,6 +199,8 @@
 							
 
 						</div>
+						
+	
 					</form:form>
 
 					<BR> <BR>
@@ -325,10 +333,7 @@
 							<label>Image Url</label> <form:input type="text" class="form-control"
 								name="imageUrl" value="${marker.imageUrl}" path="imageUrl"/>
 						</div>
-						<div class="form-group">
-							<label>Icon Url</label> <form:input type="text" class="form-control"
-								name="iconUrl" value="${marker.iconUrl}" path="iconUrl" />
-						</div>
+
 
 
 						<div class="row">

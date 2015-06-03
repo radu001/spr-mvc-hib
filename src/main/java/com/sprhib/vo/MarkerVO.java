@@ -8,7 +8,6 @@ public class MarkerVO {
 	private int idMarker;
 	private String name;
 	private String description;
-	private String iconUrl;
 	private double latitude;
 	private double longitude;
 	private String site;
@@ -16,12 +15,14 @@ public class MarkerVO {
 	private String route;
 	private String imageUrl;
 	private String address;
-	
+	private String iconUrl;
+
+
 	public MarkerVO(Marker m) {
 		idMarker = m.getIdMarker();
 		name = m.getName();
 		description = m.getDescription();
-		iconUrl = m.getIconUrl();
+
 		latitude = m.getLatitude();
 		longitude = m.getLongitude();
 		site = m.getSite();
@@ -29,6 +30,8 @@ public class MarkerVO {
 		route = m.getRoute();
 		imageUrl = m.getImageUrl();
 		address = m.getAddress();
+		iconUrl = m.getCategory().getIconUrl();
+		System.out.println("cat id: " +  m.getCategory().getIdCategory());
 	}
 	
 	public int getIdMarker() {
@@ -49,12 +52,7 @@ public class MarkerVO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getIconUrl() {
-		return iconUrl;
-	}
-	public void setIconUrl(String iconUrl) {
-		this.iconUrl = iconUrl;
-	}
+
 	public double getLatitude() {
 		return latitude;
 	}
@@ -99,4 +97,11 @@ public class MarkerVO {
 	}
 	
 	
+	public String getIconUrl() {
+		return iconUrl;
+	}
+
+	public void setIconUrl(String iconUrl) {
+		this.iconUrl = iconUrl;
+	}
 }
