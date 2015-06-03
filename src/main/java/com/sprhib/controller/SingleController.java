@@ -19,6 +19,7 @@ import com.sprhib.model.MarkersCategory;
 import com.sprhib.service.CategoryService;
 import com.sprhib.service.MarkerService;
 import com.sprhib.vo.MarkerVO;
+import com.sprhib.vo.MarkersCategoryVO;
 
 @Controller
 public class SingleController {
@@ -38,8 +39,8 @@ public class SingleController {
 		modelAndView.addObject("marker",marker);
 		
 		if (request.getSession().getAttribute("loggedIn") != null) {		
-			MarkersCategory category = categoryService.getByPK(marker.getFk_category());
-			List<MarkersCategory> categories = categoryService.getAll();	
+			MarkersCategoryVO category = categoryService.getByPK(marker.getFk_category());
+			List<MarkersCategoryVO> categories = categoryService.getAll();	
 			modelAndView.addObject("category",category);
 			modelAndView.addObject("categories",categories);
 		}
@@ -56,7 +57,7 @@ public class SingleController {
 	}
 	
 	@RequestMapping(value="/single/catJson/{id}")
-	public  @ResponseBody  MarkersCategory catJson(@PathVariable String id) {
+	public  @ResponseBody  MarkersCategoryVO catJson(@PathVariable String id) {
 		
 		int idInt = Integer.parseInt(id);
 		

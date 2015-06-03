@@ -13,6 +13,7 @@ import com.sprhib.model.Marker;
 import com.sprhib.model.MarkersCategory;
 import com.sprhib.service.CategoryService;
 import com.sprhib.service.MarkerService;
+import com.sprhib.vo.MarkersCategoryVO;
 
 @Controller
 public class AddController {
@@ -26,8 +27,8 @@ public class AddController {
 	@RequestMapping(value="/add")
 	public ModelAndView addPage() {
 		ModelAndView modelAndView = new ModelAndView("add");
-		List<MarkersCategory> categories = categoryService.getAll();	
-		MarkersCategory category = categories.get(0);
+		List<MarkersCategoryVO> categories = categoryService.getAll();	
+		MarkersCategoryVO category = categories.get(0);
 		modelAndView.addObject("categories",categories);
 		modelAndView.addObject("category",category);
 		modelAndView.addObject("marker", new Marker());

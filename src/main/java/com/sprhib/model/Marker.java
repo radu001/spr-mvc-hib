@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.apache.tomcat.util.codec.binary.Base64;
+
 @Entity
 @Table(name = "marker")
 public class Marker implements Comparable<Marker> {
@@ -23,21 +25,29 @@ public class Marker implements Comparable<Marker> {
 	private double longitude;
 	private String site;
 	private int fk_category;
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "fk_category", insertable = false, updatable = false)
 	private MarkersCategory category;
 	
 	@Transient
 	private String route;
-
 	private byte[] routeByte;
-
-	//private String route;
 	private String imageUrl;
 	private String address;
 
 	public Marker() {
+		//convertRoute();
 	}
+	
+	public void decode() {
+		route = new String(Base64.decodeBase64(routeByte));
+	}
+	
+	public void encode() {
+		routeByte = Base64.encodeBase64(route.getBytes());
+	}
+	
 
 	public MarkersCategory getCategory() {
 		return category;
@@ -61,6 +71,7 @@ public class Marker implements Comparable<Marker> {
 		this.route = routeStr;
 		this.fk_category = fk_category;
 		this.address = address;
+		//convertRoute();
 	}
 
 	public int compareTo(Marker m2) {
@@ -74,6 +85,14 @@ public class Marker implements Comparable<Marker> {
 	}
 
 	
+	public byte[] getRouteByte() {
+		return routeByte;
+	}
+
+	public void setRouteByte(byte[] routeByte) {
+		this.routeByte = routeByte;
+	}
+
 	public String getAddress() {
 		return address;
 	}

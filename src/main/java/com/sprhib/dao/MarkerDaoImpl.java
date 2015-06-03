@@ -22,6 +22,7 @@ public class MarkerDaoImpl implements MarkerDao {
 	
 	
 	public int insert(Marker object) {
+		//object.convertRoute();
 		getCurrentSession().save(object);
 		return 1;
 	}

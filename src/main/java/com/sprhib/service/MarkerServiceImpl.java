@@ -21,15 +21,19 @@ public class MarkerServiceImpl implements MarkerService{
 	private MarkerDao markerDao;
 	
 	public int insert(Marker object) {
+		object.encode();
 		markerDao.insert(object);
 		return 1;
 	}
 	
 	public MarkerVO getByPK(int key) {
-		return new MarkerVO(markerDao.getByPK(key));
+		Marker marker = markerDao.getByPK(key);
+		marker.decode();
+		return new MarkerVO(marker);
 	}
 	
 	public void update(Marker object) {
+		object.encode();
 		markerDao.update(object);
 	}
 	
@@ -40,17 +44,20 @@ public class MarkerServiceImpl implements MarkerService{
 	public List<MarkerVO> getAll() {
 		List<MarkerVO> markersVO = new ArrayList<MarkerVO>();
 		List<Marker> list = markerDao.getAll();
-		for(Marker marker : list)
+		for(Marker marker : list) {
+			marker.decode();
 			markersVO.add(new MarkerVO(marker));
+		}
 		
 		return markersVO;
 	}
 	
 	public List<MarkerVO> getByFK(int fk) {		
 		List<MarkerVO> markersVO = new ArrayList<MarkerVO>();
-		for(Marker marker : markerDao.getByFK(fk))
+		for(Marker marker : markerDao.getByFK(fk)) {
+			marker.decode();
 			markersVO.add(new MarkerVO(marker));
-		
+		}
 		return markersVO;
 	}
 

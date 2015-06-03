@@ -1,6 +1,7 @@
 package com.sprhib.service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sprhib.dao.CategoryDao;
 import com.sprhib.model.MarkersCategory;
+import com.sprhib.vo.MarkersCategoryVO;
 
 @Service
 @Transactional
@@ -21,8 +23,8 @@ public class CategoryServiceImpl implements CategoryService{
 		return categoryDao.insert(object);
 	}
 	
-	public MarkersCategory getByPK(int key) {
-		return categoryDao.getByPK(key);
+	public MarkersCategoryVO getByPK(int key) {
+		return new MarkersCategoryVO(categoryDao.getByPK(key));
 	}
 
 	public void update(MarkersCategory object) {
@@ -33,8 +35,12 @@ public class CategoryServiceImpl implements CategoryService{
 		categoryDao.delete(object);
 	}
 	
-	public List<MarkersCategory> getAll() {
-		return categoryDao.getAll();
+	public List<MarkersCategoryVO> getAll() {
+		List<MarkersCategoryVO> categoryVO = new ArrayList<MarkersCategoryVO>();
+		for(MarkersCategory category : categoryDao.getAll()) {
+			categoryVO.add(new MarkersCategoryVO(category));
+		}
+		return categoryVO;
 	}
 	
 	public Long getCount() {
