@@ -1,8 +1,12 @@
 package com.sprhib.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,8 +18,18 @@ public class MarkersCategory {
 	private int idCategory;
 	private String name;
 	private String description;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
+	private List<Marker> markers;
 	//private int publicMap;
 	
+	public List<Marker> getMarkers() {
+		return markers;
+	}
+
+	public void setMarkers(List<Marker> markers) {
+		this.markers = markers;
+	}
+
 	public MarkersCategory() {
 	}
 	

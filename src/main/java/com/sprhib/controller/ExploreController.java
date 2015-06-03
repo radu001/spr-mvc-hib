@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sprhib.model.Marker;
 import com.sprhib.service.CategoryService;
 import com.sprhib.service.MarkerService;
+import com.sprhib.vo.MarkerVO;
 
 @Controller
 @RequestMapping(value="/explore")
@@ -31,11 +31,11 @@ public class ExploreController {
 	}
 	
 	@RequestMapping(value="/listJson/{id}")
-	public  @ResponseBody  List<Marker> listOfMarkersJson(@PathVariable String id) {
+	public  @ResponseBody  List<MarkerVO> listOfMarkersJson(@PathVariable String id) {
 		
 		int categoryIdInt = Integer.parseInt(id);
 		
-		List<Marker> markers = null;
+		List<MarkerVO> markers = null;
 		if (categoryIdInt != -1)
 			markers = markerService.getByFK(categoryIdInt);
 		else

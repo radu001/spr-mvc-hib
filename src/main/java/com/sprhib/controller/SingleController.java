@@ -18,6 +18,7 @@ import com.sprhib.model.Marker;
 import com.sprhib.model.MarkersCategory;
 import com.sprhib.service.CategoryService;
 import com.sprhib.service.MarkerService;
+import com.sprhib.vo.MarkerVO;
 
 @Controller
 public class SingleController {
@@ -33,7 +34,7 @@ public class SingleController {
 
 		ModelAndView modelAndView = new ModelAndView("single");
 		
-		Marker marker = markerService.getByPK(id);
+		MarkerVO marker = markerService.getByPK(id);
 		modelAndView.addObject("marker",marker);
 		
 		if (request.getSession().getAttribute("loggedIn") != null) {		
@@ -47,7 +48,7 @@ public class SingleController {
 	}
 	
 	@RequestMapping(value="/single/listJson/{id}")
-	public  @ResponseBody  Marker markersJson(@PathVariable String id) {
+	public  @ResponseBody  MarkerVO markersJson(@PathVariable String id) {
 		
 		int idInt = Integer.parseInt(id);
 		

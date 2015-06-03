@@ -1,9 +1,13 @@
 package com.sprhib.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "marker")
@@ -19,13 +23,30 @@ public class Marker implements Comparable<Marker> {
 	private double longitude;
 	private String site;
 	private int fk_category;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "fk_category", insertable = false, updatable = false)
+	private MarkersCategory category;
+	
+	@Transient
 	private String route;
+
+	private byte[] routeByte;
+
+	//private String route;
 	private String imageUrl;
 	private String address;
 
 	public Marker() {
 	}
 
+	public MarkersCategory getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(MarkersCategory category) {
+		this.category = category;
+	}
 
 	public Marker(int idMarker, String title, String description, String address, String imageUrl,
 			String iconUrl, String site, double latitude, double longitude, String routeStr, int fk_category) {

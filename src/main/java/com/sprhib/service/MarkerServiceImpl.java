@@ -2,6 +2,7 @@ package com.sprhib.service;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sprhib.dao.MarkerDao;
 import com.sprhib.model.Marker;
+import com.sprhib.vo.MarkerVO;
 
 @Service
 @Transactional
@@ -23,8 +25,8 @@ public class MarkerServiceImpl implements MarkerService{
 		return 1;
 	}
 	
-	public Marker getByPK(int key) {
-		return markerDao.getByPK(key);
+	public MarkerVO getByPK(int key) {
+		return new MarkerVO(markerDao.getByPK(key));
 	}
 	
 	public void update(Marker object) {
@@ -35,12 +37,21 @@ public class MarkerServiceImpl implements MarkerService{
 		markerDao.delete(object);	
 	}
 	
-	public List<Marker> getAll() {
-		return markerDao.getAll();
+	public List<MarkerVO> getAll() {
+		List<MarkerVO> markersVO = new ArrayList<MarkerVO>();
+		List<Marker> list = markerDao.getAll();
+		for(Marker marker : list)
+			markersVO.add(new MarkerVO(marker));
+		
+		return markersVO;
 	}
 	
-	public List<Marker> getByFK(int fk) {
-		return markerDao.getByFK(fk);
+	public List<MarkerVO> getByFK(int fk) {		
+		List<MarkerVO> markersVO = new ArrayList<MarkerVO>();
+		for(Marker marker : markerDao.getByFK(fk))
+			markersVO.add(new MarkerVO(marker));
+		
+		return markersVO;
 	}
 
 	public Long getCount() {
