@@ -260,7 +260,7 @@ var infobox = new InfoBox({
 	pixelOffset : new google.maps.Size(-101, -285),
 	zIndex : null,
 	boxStyle : {
-		background : "url('images/infobox-bg.png') no-repeat",
+		background : "url('http://localhost:8090/spr-mvc-hib/images/infobox-bg.png') no-repeat",
 		opacity : 1,
 		width : "202px",
 		height : "245px"

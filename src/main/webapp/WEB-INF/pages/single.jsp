@@ -207,10 +207,11 @@
 					<div class="row">
 						<h1>Update Marker</h1>
 					</div>
-					<form:form method="POST" commandName="marker" action="${pageContext.request.contextPath}/single/updateMarker.html" onsubmit="return validateMarkerForm()" name="markerForm">
+					<form:form method="POST" commandName="marker" action="${pageContext.request.contextPath}/single/updateMarker.html" onsubmit="return validateMarkerForm()" name="markerForm" enctype="multipart/form-data">
 
 						<form:hidden value="${marker.idMarker}" path="idMarker" />
 
+						<form:hidden value="${marker.imageUrl}" path="imageUrl" />
 						<div class="row">
 
 							<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
@@ -330,8 +331,8 @@
 						</div>
 
 						<div class="form-group">
-							<label>Image Url</label> <form:input type="text" class="form-control"
-								name="imageUrl" value="${marker.imageUrl}" path="imageUrl"/>
+							<label>Select image to upload to server</label> 
+							<input type="file" name="file" />
 						</div>
 
 
@@ -364,7 +365,7 @@
 
 			<div class="singleTop">
 				<div>
-					<img src="${marker.imageUrl}" style="width: 100%;">
+					<img src="${pageContext.request.contextPath}${marker.imageUrl}" style="width: 100%;">
 				</div>
 				<div class="summary">
 					<div class="row">

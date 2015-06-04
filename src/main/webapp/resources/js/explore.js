@@ -85,7 +85,7 @@ function changeMap(element) {
 				string = string + '<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">' +
 				'<a href="' + ctx +'/single/' + marker.idMarker + '" class="card" onmouseover="focusMarker('+ marker.idMarker +');">' +
 					'<div class="figure">' +
-						'<img src="' + marker.imageUrl + '"alt="image" width="266" height="166">' +
+						'<img src="' + ctx + marker.imageUrl + '"alt="image" width="266" height="166">' +
 						'<div class="figCaption"></div>' +
 						'<div class="figView">' +
 							'<span class="icon-eye"></span>' +
@@ -182,7 +182,7 @@ function putMarkers(markersArray) {
 
 						var infoboxContent = '<div class="infoW" style="height:300px;">'
 								+ '<div class="propImg">' + '<img src="'
-								+ marker.imageUrl
+								+ ctx + marker.imageUrl
 								+ '">'
 								+ '<div class="propBg">'
 								+ '<div class="propPrice"><a target="_blank" style="padding-left:5px;padding-right:5px; border-radius: 10px; border: 2px solid; border-color: black; color:black; background-color:#99FF66" href="http://www.'

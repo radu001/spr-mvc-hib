@@ -166,7 +166,7 @@ if(session.getAttribute("loggedIn") != null)
 
 
 
-				<form:form method="POST" commandName="marker" action="${pageContext.request.contextPath}/add/addMarker.html" onsubmit="return validateMarkerForm()" name="markerForm">
+				<form:form method="POST" commandName="marker" action="${pageContext.request.contextPath}/add/addMarker.html" onsubmit="return validateMarkerForm()" name="markerForm" enctype="multipart/form-data">
 
 						<div class="row">
 
@@ -287,11 +287,10 @@ if(session.getAttribute("loggedIn") != null)
 						</div>
 
 						<div class="form-group">
-							<label>Image Url</label> <form:input type="text" class="form-control"
-								name="imageUrl" path="imageUrl"/>
+							<label>Select image to upload to server</label> 
+							<input type="file" name="file" />
 						</div>
-
-
+						
 
 						<div class="row">
 							<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">

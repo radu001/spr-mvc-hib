@@ -51,8 +51,6 @@
         var longitude =  document.forms["markerForm"]["longitude"].value;
         var webSite =  document.forms["markerForm"]["webSite"].value;
         var route =  document.forms["markerForm"]["route"].value;
-        var imageUrl =  document.forms["markerForm"]["imageUrl"].value;
-        var iconUrl =  document.forms["markerForm"]["iconUrl"].value;
         var address = document.forms["markerForm"]["address"].value;
         
         
@@ -73,16 +71,10 @@
         
         if (route == null || route == "")
         	str = str.concat("Route not set \n");
-               
-        if (imageUrl == null || imageUrl == "")
-        	str = str.concat("Image url empty \n");
         
         if (address == null || address == "")
         	str = str.concat("Address is empty \n");
         console.log("address: " + address);
-        
-        if (iconUrl == null || iconUrl == "")
-        	document.getElementById("iconUrl").value = "images/marker-green.png";
         
         
         if (str != "") {
