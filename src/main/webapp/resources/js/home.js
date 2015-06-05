@@ -1,3 +1,14 @@
+function handle(e){
+    if(e.keyCode === 13){
+    	location.href = ctx + "/search/" + document.getElementById('searchInput').value;
+    }
+}
+
+function searchButton(){
+    	location.href = ctx + "/search/" + document.getElementById('searchInput').value;
+    	return false;
+}
+
 (function($) {
     "use strict";
 

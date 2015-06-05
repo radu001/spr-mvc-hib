@@ -19,6 +19,8 @@ public interface MarkerService {
 	public List<MarkerVO> getAll();
 	
 	public List<MarkerVO> getByFK(int fk);
+	
+	public List<MarkerVO> search(String searchString);
 
 	Long getCount();
 	

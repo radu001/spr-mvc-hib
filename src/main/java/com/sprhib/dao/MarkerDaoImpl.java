@@ -61,4 +61,14 @@ public class MarkerDaoImpl implements MarkerDao {
 		return (List<Marker>) getCurrentSession().createQuery("select p from Marker as p where p.fk_category=:category")
 	            .setParameter("category",fk).list(); 
 	}
+
+
+	@SuppressWarnings("unchecked")
+	public List<Marker> search(String searchString) {
+		String query = "select p from Marker as p where p.name Like :searchString " + 
+				"or p.description Like :searchString";
+
+		return (List<Marker>) getCurrentSession().createQuery(query).setString("searchString", "%" + searchString + "%")
+			    .list(); 
+	}
 }

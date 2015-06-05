@@ -15,7 +15,7 @@ response.sendRedirect("signin.html");
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <title>reales | real estate web application</title>
-
+<script>var ctx = "${pageContext.request.contextPath}"</script>
 <link href="css/font-awesome.css" rel="stylesheet">
 <link href="css/simple-line-icons.css" rel="stylesheet">
 <link href="css/jquery-ui.css" rel="stylesheet">
@@ -41,8 +41,8 @@ response.sendRedirect("signin.html");
 		</div>
 		<a href="#" class="navHandler"><span class="fa fa-bars"></span></a>
 		<div class="search">
-			<span class="searchIcon icon-magnifier"></span> <input type="text"
-				placeholder="Search for places...">
+			<span class="searchIcon icon-magnifier"></span> 
+			<input type="text" id="searchInput" placeholder="Search for places..." onkeypress="handle(event)">
 		</div>
 		<% 
 if(session.getAttribute("loggedIn") != null)

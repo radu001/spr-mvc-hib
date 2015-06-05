@@ -5,6 +5,12 @@
     var path;
     var geocoder;
     
+    function handle(e){
+        if(e.keyCode === 13){
+        	location.href = ctx + "/search/" + document.getElementById('searchInput').value;
+        }
+    }
+    
     function autocomplete(latlng) {
     	 geocoder = new google.maps.Geocoder();
     	 geocoder.geocode({'latLng': latlng}, function(results, status) {

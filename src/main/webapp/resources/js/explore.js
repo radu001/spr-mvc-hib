@@ -13,20 +13,10 @@ function clearRoute() {
 		path.clear();
 }
 
-function validateDelete() {
-	if(categoryId == -1){
-		alert('Select the category');
-		return;
-	}
-	
-	if (confirm('Are you sure you want to delete the category from database?')) {
-		    var xmlHttp = new XMLHttpRequest();
-		    xmlHttp.open( "GET", "delete?id=" + categoryId + "&type=category", false );
-		    xmlHttp.send( null );
-		    return xmlHttp.responseText;
-	} else {
-	    return false;
-	}
+function handle(e){
+    if(e.keyCode === 13){
+    	location.href = ctx + "/search/" + document.getElementById('searchInput').value;
+    }
 }
 
 function setRoute(marker) {

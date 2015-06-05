@@ -65,4 +65,16 @@ public class MarkerServiceImpl implements MarkerService{
 		return markerDao.getCount();
 	}
 
+	@Override
+	public List<MarkerVO> search(String searchString) {
+		List<MarkerVO> markersVO = new ArrayList<MarkerVO>();
+		List<Marker> list = markerDao.search(searchString);
+		for(Marker marker : list) {
+			marker.decode();
+			markersVO.add(new MarkerVO(marker));
+		}
+		
+		return markersVO;
+	}
+
 }

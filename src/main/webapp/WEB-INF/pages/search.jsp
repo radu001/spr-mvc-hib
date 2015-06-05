@@ -113,50 +113,10 @@ if(session.getAttribute("loggedIn") != null)
 			</div>
 		</div>
 		<div id="content">
-			<div class="filter">
-				<h1 class="osLight">Filter your results</h1>
-				<a href="#" class="handleFilter"><span class="icon-equalizer"></span></a>
-				<div class="clearfix"></div>
-				<form class="filterForm">
-					<div class="row">
-						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 formItem">
-							<div class="formField" id="mySelect">
-								<label>Property Type</label> <a href="#" data-toggle="dropdown"
-									class="btn btn-gray dropdown-btn dropdown-toggle propTypeSelect">
-									<span class="dropdown-label">All</span> <span
-									class="fa fa-angle-down dsArrow"></span>
-								</a>
-								<ul class="dropdown-menu dropdown-select full" role="menu">
-									<li class="active"><input type="radio" name="pType"
-										checked="checked"><a href="#"
-										onclick="changeMap('-1');">All</a></li>
-										
-										<c:forEach var="category" items="${categories}">
-										
-										<li><input type="radio" name="ptype"
-										value="${category.idCategory}"><a href="#"
-										onclick="changeMap('${category.idCategory}');">${category.name}</a></li>
-									
-									</c:forEach>
-								</ul>
-							</div>
-						</div>
-						
-						<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-							<div class="input-group">
-								<label>Close route</label> <input type="button"
-									value="Close route" class="btn btn-green btn-lg"
-									style="height: 37px;" id="putMarkerBtn" onclick="clearRoute()">
-							</div>
-						</div>
-						
-					</div>
-					<div class="row">
-					<label>Description:</label>
-					<p id="catDescription">All categories</p>
-					</div>
-				</form>
-			</div>
+			<br><h2>Found markers:</h2> <br>
+			<c:if test="${not empty notFound}">
+   					<h2><c:out value="${notFound}"/></h2>
+  			</c:if>
 			<div class="resultsList" id="resultList">
 
 				
@@ -177,7 +137,7 @@ if(session.getAttribute("loggedIn") != null)
 	<script src="${pageContext.request.contextPath}/js/infobox.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery.tagsinput.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>
-	<script src="${pageContext.request.contextPath}/js/explore.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/js/search.js" type="text/javascript"></script>
 	
 </body>
 </html>

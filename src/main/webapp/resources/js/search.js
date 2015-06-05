@@ -6,6 +6,12 @@ var path;
 var newMarker = null;
 var markers = [];
 var markerRoute = null;
+var categoryId;
+
+function clearRoute() {
+	if(path != null)
+		path.clear();
+}
 
 function handle(e){
     if(e.keyCode === 13){
@@ -13,203 +19,6 @@ function handle(e){
     }
 }
 
-function changeCategory(idCat) {
-	var a = $.ajax({
-		url : ctx + '/single/catJson/' + idCat,
-		type : "POST",
-		dataType : 'json',
-		success : function(data) {
-			console.log(data)
-			document.getElementById("titleCategory").value = data.name;
-			document.getElementById("descriptionCategory").value = data.description;
-			document.getElementById("iconUrl").value = data.iconUrl;
-			
-		},
-		error : function() {
-			console.log('failed');
-		}
-	});
-}
-function validateDelete() {
-	if (confirm('Are you sure you want to delete the marker from database?')) {
-	    return true;
-	} else {
-	    return false;
-	}
-}
-
-function startRoute() {
-	//document.getElementById("startRouteBtn").disabled = true; 
-	clearRoute();
-	
-	map.setOptions({
-		draggableCursor: 'crosshair'
-		}); 
-	
-	var polyOptions = {
-		    strokeColor: '#000000',
-		    strokeOpacity: 1.0,
-		    strokeWeight: 3
-		  };
-		  poly = new google.maps.Polyline(polyOptions);
-		  poly.setMap(map);
-
-		  path = poly.getPath();
-    	  path.push(newMarker.getPosition());
-    	  
-    	  
-    	  $('#routeString').val('[' + path.getArray().toString().replace(/\(/g,"[").replace(/\)/g,"]") + ']');
-    	  //$('#routeString').val(google.maps.geometry.encoding.encodePath(path));
-    	 
-		  // Add a listener for the click event
-		  clickListener = google.maps.event.addListener(map, 'click', addLatLng);
-}
-
-function addLatLng(event) {
-	  path = poly.getPath();
-	  path.push(event.latLng);
-	  $('#routeString').val('[' + path.getArray().toString().replace(/\(/g,"[").replace(/\)/g,"]") + ']');
-	  //$('#routeString').val(google.maps.geometry.encoding.encodePath(path));
-	}
-
-function autocomplete(latlng) {
-	 geocoder = new google.maps.Geocoder();
-	 geocoder.geocode({'latLng': latlng}, function(results, status) {
-	      if (status == google.maps.GeocoderStatus.OK) {
-	        if (results[0]) {
-	          console.log(results);
-	          document.getElementById("address").value = results[0].formatted_address;
-	        }
-	      } else {
-	        alert("Geocoder failed due to: " + status);
-	      }
-	    });
-}
-
-
-function putNewMarker() {
-	newMarker.setMap(null);
-	clearRoute();
-    	clickListener = google.maps.event.addListener(map, 'click',function(event) {
-    		   placeMarker(event.latLng);
-
-    });
-    	 //document.getElementById("putMarkerBtn").disabled = true; 
-	
-}
-
-
-function placeMarker(location) {
-	  newMarker = new google.maps.Marker({
-	        position: location,
-	        map: map,
-	        icon: new google.maps.MarkerImage( 
-	        	ctx + "/images/marker-new.png",
-	            null,
-	            null,
-	            null,
-	            new google.maps.Size(36, 36)
-	        ),
-	        draggable: true,
-	        animation: google.maps.Animation.DROP,
-	    });
-	 
-	  $('#latitude').val(location.lat());
-    $('#longitude').val(location.lng());
-	  google.maps.event.removeListener(clickListener);
-	  
-    google.maps.event.addListener(newMarker,'dragend',function(event) {
-
-    	autocomplete(newMarker.position);
-    });
-    autocomplete(newMarker.position);
-	
-	  
-	    google.maps.event.addListener(newMarker, "mouseup", function(event) {
-	        $('#latitude').val(this.position.lat());
-	        $('#longitude').val(this.position.lng());
-	    });
-	    
-  	//document.getElementById("startRouteBtn").disabled = false; 
-	   
-}
-
-
-function validateCategoryForm() {
-	var str = "";
-    var title = document.getElementById('titleCategory').value;
-    var description = document.forms["categoryForm"]["description"].value;
-    console.log(title);
-    console.log(description);
-    
-    if (title == null || title == "") {
-    	str = str.concat("Title empty \n");
-    }
-    if (description == null || description == "") {
-    	str = str.concat("Description empty");
-    }
-           
-    if (str != "") {
-        alert(str);
-        return false;
-    }
-}
-
-
-function validateMarkerForm() {
-	var str = "";
-    var title = document.forms["markerForm"]["title"].value;
-    var description = document.forms["markerForm"]["description"].value;
-    var category =  document.forms["markerForm"]["ptype"].value;
-    var latitude =  document.forms["markerForm"]["latitude"].value;
-    var longitude =  document.forms["markerForm"]["longitude"].value;
-    var webSite =  document.forms["markerForm"]["webSite"].value;
-    var route =  document.forms["markerForm"]["route"].value;
-    var imageUrl =  document.forms["markerForm"]["imageUrl"].value;
-    var iconUrl =  document.forms["markerForm"]["iconUrl"].value;
-    var address = document.forms["markerForm"]["address"].value;
-    
-    
-    if (title == null || title == "")
-    	str = str.concat("Title empty \n");
-    
-    if (description == null || description == "")
-    	str = str.concat("Description empty \n");
-    
-    if (category == null || category == "")
-    	str = str.concat("Category not selected \n");
-    
-    if (latitude == null || latitude == "" || longitude == null || longitude == "")
-    	str = str.concat("Marker not positioned \n");
-    
-    if (webSite == null || webSite == "")
-    	str = str.concat("Web site empty \n");
-    
-    if (route == null || route == "")
-    	str = str.concat("Route not set \n");
-           
-    if (imageUrl == null || imageUrl == "")
-    	str = str.concat("Image url empty \n");
-    
-    if (address == null || address == "")
-    	str = str.concat("Address is empty \n");
-    console.log("address: " + address);
-    
-    if (iconUrl == null || iconUrl == "")
-    	document.getElementById("iconUrl").value = "images/marker-green.png";
-    
-    
-    if (str != "") {
-        alert(str);
-        return false;
-    }
-}
-
-function clearRoute() {
-	if(path != null)
-		path.clear();
-	 $('#routeString').val('');
-}
 
 function setRoute(marker) {
 	if(path != null)
@@ -237,25 +46,74 @@ function setRoute(marker) {
 
 }
 
-function focusMarker() {
-			map.setCenter(newMarker.position);
+function focusMarker(markerId) {
+	markers.forEach(function(marker) {
+		if (markerId == marker.get('store_id'))
+			map.setCenter(marker.getPosition());
+	});
 }
 
-function loadMarker() {
-
+function LoadMarkers() {
+	//categoryId = element;
+	//console.log(element);
+	clearRoute();
 
 	var a = $.ajax({
-		url : ctx + '/single/listJson/' + markerId,
+		url : ctx + '/search/listJson/',
 		type : "POST",
 		dataType : 'json',
 		success : function(data) {
-			console.log(data)
-			putMarker(data);
+			console.log("sucessfull sending:")
+			console.log(data);
+			var json = data;
+
+			//console.log(json.Markers);
+			//deleteMarkers();
+			putMarkers(data);
+			
+			var string="";
+			$.each(data,function(i, marker) {
+				string = string + '<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">' +
+				'<a href="' + ctx +'/single/' + marker.idMarker + '" class="card" onmouseover="focusMarker('+ marker.idMarker +');">' +
+					'<div class="figure">' +
+						'<img src="' + ctx + marker.imageUrl + '"alt="image" width="266" height="166">' +
+						'<div class="figCaption"></div>' +
+						'<div class="figView">' +
+							'<span class="icon-eye"></span>' +
+						'</div>' +
+					'</div>' +
+					'<h2>' + marker.name + '</h2>' +
+					'<div class="cardAddress">' +
+						'<span class="icon-pointer"></span>' + marker.address +
+					'</div>' +
+					
+					'<div class="cardAddress" style="height:60px; display:block;position:relative;text-overflow: ellipsis;' +
+					'word-wrap: break-word;white-space: pre">' + marker.description + '</div>' +
+					
+					'<div class="cardAddress">' +
+					marker.site +
+					'</div>' +
+					
+					'<div class="clearfix"></div>' +
+				'</a>' +
+			'</div>';
+			});
+			
+			
+			var div = document.createElement('div');
+		    div.className = 'row';
+		    div.innerHTML = string;
+		    document.getElementById('resultList').innerHTML = "";
+		    document.getElementById('resultList').appendChild(div);
+		    
+		    
+
 		},
 		error : function() {
 			console.log('failed');
 		}
 	});
+	
 
 }
 
@@ -266,7 +124,7 @@ var infobox = new InfoBox({
 	pixelOffset : new google.maps.Size(-101, -285),
 	zIndex : null,
 	boxStyle : {
-		background : "url('http://localhost:8090/spr-mvc-hib/images/infobox-bg.png') no-repeat",
+		background : "url('" + ctx + "/images/infobox-bg.png') no-repeat",
 		opacity : 1,
 		width : "202px",
 		height : "245px"
@@ -278,7 +136,11 @@ var infobox = new InfoBox({
 	enableEventPropagation : false
 });
 
-function putMarker(marker) {
+function putMarkers(markersArray) {
+	$
+	.each(
+			markersArray,
+			function(i, marker) {
 						var latlng = new google.maps.LatLng(marker.latitude,
 								marker.longitude);
 						var markerVar = new google.maps.Marker({
@@ -320,29 +182,40 @@ function putMarker(marker) {
 								'<div class="clearfix"></div>'
 								+ '<div class="infoButtons">'
 								+ '<a class="btn btn-sm btn-round btn-gray btn-o closeInfo">Close</a>'
-								+ '<a href="single.jsp?Id=' + marker.idMarker  + '" class="btn btn-sm btn-round btn-green viewInfo">View</a>'
+								+ '<a href="' + ctx + '/single/' + marker.idMarker  + '" class="btn btn-sm btn-round btn-green viewInfo">View</a>'
 								+ '</div>' + '</div>';
 
-						google.maps.event.addListener(markerVar, 'dblclick',function() {
+						google.maps.event.addListener(markerVar, 'dblclick',
+								(function(marker, i) {
+									return function() {
+										clearRoute();
 										infobox.setContent(infoboxContent);
-										infobox.open(map, markerVar);
-								});
+										infobox.open(map, marker);
+										
+									}
+								})(markerVar, i));
 
 						$(document).on('click', '.closeInfo', function() {
 							infobox.open(null, null);
 						});
-						
+
 						google.maps.event.addListener(markerVar, 'click',
 								function() {
 									setRoute(markerVar);
 								});
-						
-						newMarker = markerVar;
-						setRoute(markerVar);
-						focusMarker();
-					
+						// markerVar.set('id', marker.Id);
+						markers.push(markerVar);
+						console.log("marker put");
+					});
 }
 
+// Deletes all markers in the array.
+function deleteMarkers() {
+	for (var i = 0; i < markers.length; i++) {
+		markers[i].setMap(null);
+	}
+	markers = [];
+}
 
 (function($) {
 	"use strict";
@@ -393,7 +266,9 @@ function putMarker(marker) {
 	map.setCenter(new google.maps.LatLng(47.0263795, 28.840946));
 	map.setZoom(14);
 
-	loadMarker();
+	//changeMap("-1");
+	LoadMarkers();
+	
 
 	var windowHeight;
 	var windowWidth;

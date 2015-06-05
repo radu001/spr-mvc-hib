@@ -18,6 +18,8 @@ public interface MarkerDao {
 	public List<Marker> getAll();
 	
 	public List<Marker> getByFK(int fk);
+	
+	public List<Marker> search(String searchString);
 
 	Long getCount();
 	

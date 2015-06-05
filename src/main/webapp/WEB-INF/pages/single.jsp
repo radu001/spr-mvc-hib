@@ -34,8 +34,8 @@
 		</div>
 		<a href="#" class="navHandler"><span class="fa fa-bars"></span></a>
 		<div class="search">
-			<span class="searchIcon icon-magnifier"></span> <input type="text"
-				placeholder="Search for places...">
+			<span class="searchIcon icon-magnifier"></span> 
+			<input type="text" id="searchInput" placeholder="Search for places..." onkeypress="handle(event)">
 		</div>
 		<%
 			if (session.getAttribute("loggedIn") != null) {
