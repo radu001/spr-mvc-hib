@@ -53,7 +53,7 @@
                 <div style="width: 280px;margin: 0 auto;">
                     <div class="form-group hidden-xs adv">
                         <div class="input-group">
-                            <input class="form-control price" type="text" placeholder="Search for markers" onkeypress="handle(event)" id="searchInput">
+                            <input class="form-control price" type="text" placeholder="Search for Markers" onkeypress="handle(event)" id="searchInput">
                         </div>
                     </div>
                     <div class="form-group">

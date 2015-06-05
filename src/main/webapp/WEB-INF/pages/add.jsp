@@ -42,7 +42,7 @@ response.sendRedirect("signin.html");
 		<a href="#" class="navHandler"><span class="fa fa-bars"></span></a>
 		<div class="search">
 			<span class="searchIcon icon-magnifier"></span> 
-			<input type="text" id="searchInput" placeholder="Search for places..." onkeypress="handle(event)">
+			<input type="text" id="searchInput" placeholder="Search for Markers..." onkeypress="handle(event)">
 		</div>
 		<% 
 if(session.getAttribute("loggedIn") != null)
