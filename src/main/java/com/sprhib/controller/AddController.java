@@ -56,7 +56,7 @@ public class AddController {
 	}
 	
 	@RequestMapping(value="/add/addMarker", method=RequestMethod.POST)
-	public ModelAndView addCategory(@ModelAttribute Marker marker, @RequestParam("file") MultipartFile file) {
+	public ModelAndView addMarker(@ModelAttribute Marker marker, @RequestParam("file") MultipartFile file) {
          
 		File serverFile = null;
 		String dateString = null;
