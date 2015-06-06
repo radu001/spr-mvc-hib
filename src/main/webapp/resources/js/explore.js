@@ -188,8 +188,8 @@ function putMarkers(markersArray) {
 								+ '<div class="propTitle">'
 								+ marker.name
 								+ '</div>'
-								+ '<div class="propAddress">' + marker.address + '</div>' +
-								+ marker.description.substring(0, 80)
+								+ '<div class="propAddress">' + marker.address + '</div>'
+								+ marker.description
 								+ '</div>'
 								+
 

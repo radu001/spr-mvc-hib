@@ -206,13 +206,13 @@ if(session.getAttribute("loggedIn") != null)
 
 									<c:forEach var="cat" items="${categories}">
 
-										<c:if test="${cat.idCategory != cat.idCategory}">
+										<c:if test="${cat.idCategory != category.idCategory}">
 											<li><form:radiobutton name="ptype"
 													value="${cat.idCategory}" path="fk_category" /> <a
 												href="#">${cat.name}</a></li>
 										</c:if>
 
-										<c:if test="${cat.idCategory == cat.idCategory}">
+										<c:if test="${cat.idCategory == category.idCategory}">
 											<li class="active"><form:radiobutton name="ptype"
 													checked="checked" value="${cat.idCategory}"
 													path="fk_category" /> <a href="#">${cat.name}</a></li>

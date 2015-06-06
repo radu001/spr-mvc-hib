@@ -85,7 +85,7 @@ function LoadMarkers() {
 					'<h2>' + marker.name + '</h2>' +
 					'<div class="cardAddress">' +
 						'<span class="icon-pointer"></span>' + marker.address +
-					'</div>' +
+					'</div>'
 					
 					'<div class="cardAddress" style="height:60px; display:block;position:relative;text-overflow: ellipsis;' +
 					'word-wrap: break-word;white-space: pre">' + marker.description + '</div>' +
